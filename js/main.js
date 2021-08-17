@@ -218,7 +218,7 @@ const app = new Vue({
             let failProb = PROB_TABLE["-1"];
             let noChangeProb;
             let ENHANCE_RESULT;
-            if(this.luckyFuel){
+            if(this.useLuckyFuel){
                 successProb *= LUCKY_FUEL_PROB_BONUS;
                 success2Prob *= LUCKY_FUEL_PROB_BONUS;
                 success3Prob *= LUCKY_FUEL_PROB_BONUS;
@@ -229,7 +229,7 @@ const app = new Vue({
                 success3Prob *= FEVER_PROB_BONUS;
                 failProb = 0;
                 this.useVaccine = false;
-            } else if (this.buff){
+            } else if (this.useBuff){
                 successProb *= BUFF_PROB_BONUS;
                 success2Prob *= BUFF_PROB_BONUS;
                 success3Prob *= BUFF_PROB_BONUS;        
