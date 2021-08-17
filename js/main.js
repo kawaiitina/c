@@ -196,7 +196,19 @@ const app = new Vue({
             usedLuckyFuelCount: 0,
             fuelCost: 1200000,
             vaccineCost: 30000000,
-            usedBuffCount: 0
+            usedBuffCount: 0,
+            usedCourse10: 0,
+            usedCourse11: 0,
+            usedCourse12: 0,
+            usedCourse13: 0,
+            usedCourse14: 0,
+            usedCourse15: 0,
+            course10Cost: 1000000, 
+            course11Cost: 1000000, 
+            course12Cost: 20000000, 
+            course13Cost: 50000000, 
+            course14Cost: 1000000000, 
+            course15Cost: 0, 
         }
     },
     methods: {
@@ -365,7 +377,42 @@ const app = new Vue({
             }
         },
         getUsedCredit: function(){
-            return this.fuelCost * this.usedFuelCount + this.vaccineCost * this.usedVaccineCount
+            return this.fuelCost * this.usedFuelCount 
+                + this.vaccineCost * this.usedVaccineCount
+                + this.course10Cost * this.usedCourse10
+                + this.course11Cost * this.usedCourse11
+                + this.course12Cost * this.usedCourse12
+                + this.course13Cost * this.usedCourse13
+                + this.course14Cost * this.usedCourse14
+                + this.course15Cost * this.usedCourse15
+        },
+        useCourseOneshot: function(lvl){
+            if(this.currentEnhanceLevel >= lvl){
+                M.toast({
+                    html: "코스 원샷이 사용되지 않았습니다.",
+                    displayLength: 2000,
+                })
+                return;
+            }
+            this.currentEnhanceLevel = lvl;
+            if (lvl === 10){
+                this.usedCourse10 += 1;
+            } else if (lvl === 11){
+                this.usedCourse11 += 1;
+            } else if (lvl === 12){
+                this.usedCourse12 += 1;
+            } else if (lvl === 13){
+                this.usedCourse13 += 1;
+            } else if (lvl === 14){
+                this.usedCourse14 += 1;
+            } else if (lvl === 15){
+                this.usedCourse15 += 1;
+            }
+            M.toast({
+                html: "코스 원샷 +" + lvl + " 사용",
+                displayLength: 2000,
+                classes: "yellow-text"
+            })
         }
     }
 })
