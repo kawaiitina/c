@@ -1,0 +1,106 @@
+<!doctype html>
+<html class="no-js" lang="">
+<head>
+  <meta charset="utf-8">
+  <title>클로저스 강화기</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="css/normalize.css">
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+</head>
+<body>
+<div id="app">
+    <!-- <div class="container"> -->
+        <div class="row">
+            <div class="col s6">
+                <table class="striped highlight centered responsive-table">
+                    <!-- <caption>강화 통계</caption> -->
+                    <tr>
+                        <th></th>
+                        <th>-1</th>
+                        <th>변화 없음</th>
+                        <th>방어</th>
+                        <th>+1</th>
+                        <th>+2</th>
+                        <th>+3</th>
+                        <th>합계</th>
+                    </tr>
+                    <tr v-for="(enhanceLevel, name) in stastics">
+                        <th>+{{ name }}</th>
+                        <td v-for="value in enhanceLevel">{{ value > 0 ? value : "" }}<br>{{ value > 0 && enhanceLevel["total"] > 0 ? `(${(value / enhanceLevel["total"] * 100).toFixed(2)})%` : "" }}</td>
+                    </tr>
+                </table>
+                <table class="striped highlight centered responsive-table">
+                    <tr>
+                        <th>일반 강화기 연료</th>
+                        <td>{{ usedFuelCount }} 개</td>
+                    </tr>    
+                    <tr>
+                        <th>행운 강화기 연료</th>
+                        <td>{{ usedLuckyFuelCount }} 개</td>
+                    </tr>    
+                    <tr>
+                        <th>백신</th>
+                        <td>{{ usedVaccineCount }} 개</td>
+                    </tr>    
+                    <tr>
+                        <th>버프</th>
+                        <td>{{ usedBuffCount }} 회</td>
+                    </tr>  
+                    <tr>
+                        <th>크레딧(일강연+백신)</th>
+                        <td>{{ getUsedCredit().toLocaleString() }}</td>
+                    </tr>        
+                </table>
+                <label>
+                    일반 강화기 연료 가격 (크레딧)
+                    <input class="input-field inline" type="number" v-model.number="fuelCost">
+                </label>
+                <label>
+                    백신 가격 (크레딧)
+                    <input class="input-field inline" type="number" v-model.number="vaccineCost">
+                </label>
+            </div>
+            <div class="col s6">
+                <div id="item" class="center-align text-size-3 red-text text-darken-1">
+                    +{{ currentEnhanceLevel }} 정밀해진 나태의 소드
+                </div>
+                <div>
+                    <label>
+                        <input type="checkbox" class="filled-in" v-model="useVaccine" />
+                        <span>백신</spam>
+                    </label>
+                    <label>
+                        <input type="checkbox" class="filled-in" v-model="useLuckyFuel"/>
+                        <span>행운 강화기 연료</spam>
+                    </label>
+                    <label>
+                        <input type="checkbox" class="filled-in" v-model="useBuff"/>
+                        <span>강화 버프</spam>
+                    </label>
+                </div>
+                <div>
+                    <button class="waves-effect waves-light btn-large" type="button" v-on:click="enhance">강화</button>
+                    <button class="waves-effect waves-light btn-large" type="button" v-on:click="toggleAutoEnhance">자동 강화</button>
+                </div>
+                <!-- <div class="">강화 피버 포인트: {{ feverPoint }}</div> -->
+                <!-- <div v-if="feverPoint >= 25000">강화 피버!</div> -->
+                <label>
+                    강화 피버 포인트
+                    <input class="input-field inline" type="number" min="0" max="25000" v-model.number="feverPoint">
+                </label>
+                <label>
+                    강화 단계
+                    <input class="input-field inline" type="number" min="9" max="22" v-model.number="currentEnhanceLevel">
+                </label>
+                <a href="http://closers.nexon.com/News/Notice/View?n4ArticleSN=133963" target="_blank">강화 확률 보러 가기</a>
+                <!-- <div class="">강화 결과: {{ logs[logs.length - 1] }}</div> -->
+            </div>
+        </div>
+    <!-- </div> -->
+</div>
+<script src="https://cdn.jsdelivr.net/npm/vue"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>
