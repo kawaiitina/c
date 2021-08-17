@@ -12,18 +12,18 @@
 <div id="app">
     <!-- <div class="container"> -->
         <div class="row">
-            <div class="col s6">
+            <div class="col s8">
                 <table class="striped highlight centered responsive-table">
                     <!-- <caption>강화 통계</caption> -->
                     <tr>
-                        <th></th>
-                        <th>-1</th>
-                        <th>변화 없음</th>
-                        <th>방어</th>
-                        <th>+1</th>
-                        <th>+2</th>
-                        <th>+3</th>
-                        <th>합계</th>
+                        <th class="center-align"></th>
+                        <th class="center-align">-1</th>
+                        <th class="center-align">변화 없음</th>
+                        <th class="center-align">방어</th>
+                        <th class="center-align">+1</th>
+                        <th class="center-align">+2</th>
+                        <th class="center-align">+3</th>
+                        <th class="center-align">합계</th>
                     </tr>
                     <tr v-for="(enhanceLevel, name) in stastics">
                         <th>+{{ name }}</th>
@@ -61,7 +61,7 @@
                     <input class="input-field inline" type="number" v-model.number="vaccineCost">
                 </label>
             </div>
-            <div class="col s6">
+            <div class="col s4">
                 <div id="item" class="center-align text-size-3 red-text text-darken-1">
                     +{{ currentEnhanceLevel }} 정밀해진 나태의 소드
                 </div>
